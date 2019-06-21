@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pysparse.evaluation package &mdash; PyML 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/katex-math.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pysparse.reconstruction package" href="pysparse.reconstruction.html" />
+    <link rel="prev" title="pysparse.cs.sensing package" href="pysparse.cs.sensing.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyML
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pysparse</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pysparse.html">pysparse package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pysparse.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pysparse.cs.html">pysparse.cs package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pysparse.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pysparse.reconstruction.html">pysparse.reconstruction package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pysparse.representation.html">pysparse.representation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pysparse.sampling.html">pysparse.sampling package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pysparse.utils.html">pysparse.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pysparse.html#module-pysparse">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyML</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">pysparse</a> &raquo;</li>
+        
+          <li><a href="pysparse.html">pysparse package</a> &raquo;</li>
+        
+      <li>pysparse.evaluation package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pysparse.evaluation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pysparse-evaluation-package">
+<h1>pysparse.evaluation package<a class="headerlink" href="#pysparse-evaluation-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pysparse.evaluation.error">
+<span id="pysparse-evaluation-error-module"></span><h2>pysparse.evaluation.error module<a class="headerlink" href="#module-pysparse.evaluation.error" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pysparse.evaluation.error.mse">
+<code class="descclassname">pysparse.evaluation.error.</code><code class="descname">mse</code><span class="sig-paren">(</span><em>o</em>, <em>r</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/evaluation/error.html#mse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.evaluation.error.mse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean Squared Error</p>
+<p>The Mean Squared Error (MSE) is expressed as</p>
+<div class="math">
+\[MSE = \frac{1}{MN}\sum_{i=1}^{M}\sum_{j=0}^{N}[{\bm I}(i,j), \hat{\bm I}(i, j)]^2
+
+\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>o</strong> (<em>ndarray</em>) – Orignal signal matrix.</p></li>
+<li><p><strong>r</strong> (<em>ndarray</em>) – Reconstructed signal matrix</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>MSE</strong> – Mean Squared Error</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pysparse.evaluation.error.rmse">
+<code class="descclassname">pysparse.evaluation.error.</code><code class="descname">rmse</code><span class="sig-paren">(</span><em>o</em>, <em>r</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/evaluation/error.html#rmse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.evaluation.error.rmse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Root Mean Squared Error</p>
+<p>The Root Mean Squared Error (MSE) is expressed as</p>
+<div class="math">
+\[RMSE = \sqrt{\frac{1}{MN}\sum_{i=1}^{M}\sum_{j=0}^{N}[{\bm I}(i,j), \hat{\bm I}(i, j)]^2}
+
+\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>o</strong> (<em>ndarray</em>) – Orignal signal matrix.</p></li>
+<li><p><strong>r</strong> (<em>ndarray</em>) – Reconstructed signal matrix</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>RMSE</strong> – Root Mean Squared Error</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pysparse.evaluation.snr">
+<span id="pysparse-evaluation-snr-module"></span><h2>pysparse.evaluation.snr module<a class="headerlink" href="#module-pysparse.evaluation.snr" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pysparse.evaluation.snr.psnr">
+<code class="descclassname">pysparse.evaluation.snr.</code><code class="descname">psnr</code><span class="sig-paren">(</span><em>o</em>, <em>r</em>, <em>Vpeak=None</em>, <em>mode='simple'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/evaluation/snr.html#psnr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.evaluation.snr.psnr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Peak Signal-to-Noise Ratio</p>
+<p>The Peak Signal-to-Noise Ratio (PSNR) is expressed as</p>
+<blockquote>
+<div><p>$$10 log10(frac{V_{peak}^2}{MSE} )$$</p>
+<p>For float data, V_{peak} = 1;
+FOr interges, V_{peak} = maxN, e.g. uint8: 255, uint16: 65535 …</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>o</strong> (<em>array_like</em>) – Reference data array. For image, it’s the original image.</p></li>
+<li><p><strong>r</strong> (<em>array_like</em>) – The data to be compared. For image, it’s the reconstructed image.</p></li>
+<li><p><strong>Vpeak</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em>) – The peak value. If None, computes automaticly.</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em>) – ‘simple’ or ‘rich’. ‘simple’ (default) –&gt; just return psnr i.e.
+‘rich’ –&gt; return psnr, mse, Vpeak, imgtype.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>PSNR</strong> – Peak Signal to Noise Ratio value.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pysparse.evaluation.snr.snr">
+<code class="descclassname">pysparse.evaluation.snr.</code><code class="descname">snr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/evaluation/snr.html#snr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.evaluation.snr.snr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-pysparse.evaluation">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pysparse.evaluation" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pysparse.reconstruction.html" class="btn btn-neutral float-right" title="pysparse.reconstruction package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pysparse.cs.sensing.html" class="btn btn-neutral" title="pysparse.cs.sensing package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Zhi Liu.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js"></script>
+      <script type="text/javascript" src="_static/katex_autorenderer.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

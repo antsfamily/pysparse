@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pysparse.representation package &mdash; PyML 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/katex-math.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pysparse.sampling package" href="pysparse.sampling.html" />
+    <link rel="prev" title="pysparse.reconstruction package" href="pysparse.reconstruction.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyML
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pysparse</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pysparse.html">pysparse package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pysparse.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pysparse.cs.html">pysparse.cs package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pysparse.evaluation.html">pysparse.evaluation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pysparse.reconstruction.html">pysparse.reconstruction package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pysparse.representation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pysparse.sampling.html">pysparse.sampling package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pysparse.utils.html">pysparse.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pysparse.html#module-pysparse">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyML</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">pysparse</a> &raquo;</li>
+        
+          <li><a href="pysparse.html">pysparse package</a> &raquo;</li>
+        
+      <li>pysparse.representation package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pysparse.representation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pysparse-representation-package">
+<h1>pysparse.representation package<a class="headerlink" href="#pysparse-representation-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pysparse.representation.dcts">
+<span id="pysparse-representation-dcts-module"></span><h2>pysparse.representation.dcts module<a class="headerlink" href="#module-pysparse.representation.dcts" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pysparse.representation.dcts.dct1">
+<code class="descclassname">pysparse.representation.dcts.</code><code class="descname">dct1</code><span class="sig-paren">(</span><em>x</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/representation/dcts.html#dct1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.representation.dcts.dct1" title="Permalink to this definition">¶</a></dt>
+<dd><p>1-Dimension Discrete cosine transform</p>
+<blockquote>
+<div><p>The DCT of signal <span class="math">\(x[n], n=0, 1,\cdots, N-1\)</span> is expressed as</p>
+<div class="math" id="equation-equ-dct">
+<span class="eqno">(1)<a class="headerlink" href="#equation-equ-dct" title="Permalink to this equation">¶</a></span>\[y[k] = {\rm DCT}(x[n]) = \left\{ {\begin{array}{lll}
+    {\sqrt{\frac{2}{N}}\sum_{n=0}^{N-1}x[n]\frac{1}{\sqrt 2}, \quad k=0}\\
+    {\sqrt{\frac{2}{N}}\sum_{n=0}^{N-1}x[n]{\rm cos}\frac{(2n + 1)k\pi}{2N}, \quad k=1, \cdots, N-1}
+    \end{array}} \right.
+
+\]</div>
+<p>where, <span class="math">\(k=0, 1, \cdots, N-1\)</span></p>
+</div></blockquote>
+<p>N. Ahmed, T. Natarajan, and K. R. Rao. Discrete cosine transform.
+IEEE Transactions on Computers, C-23(1):90–93, 1974. doi:10.1109/T-C.1974.223784</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>numpy array</em>) – signal vector or matrix</p>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><p><strong>axis</strong> (<em>number</em>) – transformation axis when x is a matrix (default: {0}, col)</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>y</strong> – the coefficients.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pysparse.representation.dcts.dct2">
+<code class="descclassname">pysparse.representation.dcts.</code><code class="descname">dct2</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/representation/dcts.html#dct2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.representation.dcts.dct2" title="Permalink to this definition">¶</a></dt>
+<dd><p>2-Dimension Discrete cosine transform</p>
+<p>dct1(dct1(X, axis=0), axis=1)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>numpy array</em>) – signal matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Y</strong> – coefficients matrix</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pysparse.representation.dcts.dctdict">
+<code class="descclassname">pysparse.representation.dcts.</code><code class="descname">dctdict</code><span class="sig-paren">(</span><em>N</em>, <em>isnorm=False</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/representation/dcts.html#dctdict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.representation.dcts.dctdict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Complete DCT dictionary</p>
+<div class="math" id="equation-equ-dct-matrix">
+<span class="eqno">(2)<a class="headerlink" href="#equation-equ-dct-matrix" title="Permalink to this equation">¶</a></span>\[{\bm D} = \sqrt{\frac{2}{N}}\left[\begin{array}{cccc}{1/\sqrt{2}} & {1/\sqrt{2}} & {1/\sqrt{2}} & {\cdots} & {1/\sqrt{2}} \\ {\cos \frac{\pi}{2 N}} & {\cos \frac{3 \pi}{2 N}} & {\cos \frac{5 \pi}{2 N}} & {\cdots} & {\cos \frac{(2 N-1) \pi}{2 N}} \\ {\vdots} & {\vdots} & {\vdots} & {\vdots} \\ {\cos \frac{(N-1) \pi}{2 N}} & {\cos \frac{3(N-1) \pi}{2 N}} & {\cos \frac{5(N-1) \pi}{2 N}} & {\cdots} & {\cos \frac{(2 N-1)(N-1) \pi}{2 N}}\end{array}\right]
+
+\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>N</strong> (<em>integer</em>) – The dictionary is of size <span class="math">\(N\times N\)</span></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>D</strong> – DCT dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pysparse.representation.dcts.dctmat">
+<code class="descclassname">pysparse.representation.dcts.</code><code class="descname">dctmat</code><span class="sig-paren">(</span><em>N</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/representation/dcts.html#dctmat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.representation.dcts.dctmat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Discrete cosine transform matrix</p>
+<div class="math" id="equation-equ-dct-matrixrep">
+<span class="eqno">(3)<a class="headerlink" href="#equation-equ-dct-matrixrep" title="Permalink to this equation">¶</a></span>\[{\bm y} = {\bm D}{\bm x}
+
+\]</div>
+<p>where, <span class="math">\({\bm x} = (x_n)_{N\times 1}, x_n = x[n]\)</span>, <span class="math">\({\bm D} = (d_{ij})_{N\times N}\)</span> can be expressed as</p>
+<div class="math">
+\[{\bm D} = \sqrt{\frac{2}{N}}\left[\begin{array}{cccc}{1/\sqrt{2}} & {1/\sqrt{2}} & {1/\sqrt{2}} & {\cdots} & {1/\sqrt{2}} \\ {\cos \frac{\pi}{2 N}} & {\cos \frac{3 \pi}{2 N}} & {\cos \frac{5 \pi}{2 N}} & {\cdots} & {\cos \frac{(2 N-1) \pi}{2 N}} \\ {\vdots} & {\vdots} & {\vdots} & {\vdots} \\ {\cos \frac{(N-1) \pi}{2 N}} & {\cos \frac{3(N-1) \pi}{2 N}} & {\cos \frac{5(N-1) \pi}{2 N}} & {\cdots} & {\cos \frac{(2 N-1)(N-1) \pi}{2 N}}\end{array}\right]
+
+\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>N</strong> (<em>integer</em>) – signal dimesion.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>T</strong> – DCT matrix.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pysparse.representation.dcts.idct1">
+<code class="descclassname">pysparse.representation.dcts.</code><code class="descname">idct1</code><span class="sig-paren">(</span><em>y</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/representation/dcts.html#idct1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.representation.dcts.idct1" title="Permalink to this definition">¶</a></dt>
+<dd><p>1-Dimension Inverse Discrete cosine transform</p>
+<div class="math" id="equation-equ-idct-matrixrep">
+<span class="eqno">(4)<a class="headerlink" href="#equation-equ-idct-matrixrep" title="Permalink to this equation">¶</a></span>\[{\bm x} = {\bm D}^{-1}{\bm y} = {\bm D}^T{\bm y}
+
+\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>y</strong> (<em>numpy array</em>) – coefficients</p>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><p><strong>axis</strong> (<em>number</em>) – IDCT along which axis (default: {0})</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>x</strong> – recovered signal.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pysparse.representation.dcts.idct2">
+<code class="descclassname">pysparse.representation.dcts.</code><code class="descname">idct2</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/representation/dcts.html#idct2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.representation.dcts.idct2" title="Permalink to this definition">¶</a></dt>
+<dd><p>2-Dimension Inverse Discrete cosine transform</p>
+<p>idct1(idct1(X, axis=0), axis=1)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>numpy array</em>) – signal matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Y</strong> – coefficients matrix</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pysparse.representation.dcts.odctdict">
+<code class="descclassname">pysparse.representation.dcts.</code><code class="descname">odctdict</code><span class="sig-paren">(</span><em>dictshape</em>, <em>isnorm=False</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/representation/dcts.html#odctdict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.representation.dcts.odctdict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overcomplete 1D-DCT dictionary</p>
+<div class="math" id="equation-equ-odct-matrix">
+<span class="eqno">(5)<a class="headerlink" href="#equation-equ-odct-matrix" title="Permalink to this equation">¶</a></span>\[{\bm D} = \sqrt{\frac{2}{N}}\left[\begin{array}{cccc}{1/\sqrt{2}} & {1/\sqrt{2}} & {1/\sqrt{2}} & {\cdots} & {1/\sqrt{2}} \\ {\cos \frac{\pi}{2 N}} & {\cos \frac{3 \pi}{2 N}} & {\cos \frac{5 \pi}{2 N}} & {\cdots} & {\cos \frac{(2 N-1) \pi}{2 N}} \\ {\vdots} & {\vdots} & {\vdots} & {\vdots} \\ {\cos \frac{(M-1) \pi}{2 N}} & {\cos \frac{3(M-1) \pi}{2 N}} & {\cos \frac{5(M-1) \pi}{2 N}} & {\cdots} & {\cos \frac{(2 N-1)(M-1) \pi}{2 N}}\end{array}\right]
+
+\]</div>
+<div class="math" id="equation-equ-odct-matrix-normed">
+<span class="eqno">(6)<a class="headerlink" href="#equation-equ-odct-matrix-normed" title="Permalink to this equation">¶</a></span>\[{\bm D} = \left[\frac{{\bm d}_0}{\|{\bm d}_0\|_2}, \frac{{\bm d}_1}{\|{\bm d}_1\|_2},\cdots, \frac{{\bm d}_{N-1}}{\|{\bm d}_{N-1}\|_2}\right]
+
+\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dictshape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a>) – dictionary shape</p>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>isnorm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – normlize atoms (default: {False})</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – display log (default: {True})</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pysparse.representation.dcts.odctndict">
+<code class="descclassname">pysparse.representation.dcts.</code><code class="descname">odctndict</code><span class="sig-paren">(</span><em>dictshape</em>, <em>axis=-1</em>, <em>isnorm=False</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/representation/dcts.html#odctndict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.representation.dcts.odctndict" title="Permalink to this definition">¶</a></dt>
+<dd><p>generates Overcomplete nD-DCT dictionary</p>
+<div class="math" id="equation-equ-createnddct-matrix">
+<span class="eqno">(7)<a class="headerlink" href="#equation-equ-createnddct-matrix" title="Permalink to this equation">¶</a></span>\[{\bm D}_{nd} = {\bm D}_{(n-1)d} \otimes {\bm D}_{(n-1)d}.
+
+\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dictshape</strong> (<cite>list</cite> or <cite>tuple</cite>) – shape of DCT dict [M, N]</p>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>axis</strong> (<cite>number</cite>) – Axis along which the dct is computed. If -1 then the transform
+is multidimensional(default=-1) (default: {-1})</p></li>
+<li><p><strong>isnorm</strong> (<cite>bool</cite>) – normlize atoms (default: {False})</p></li>
+<li><p><strong>verbose</strong> (<cite>bool</cite>) – display log info (default: {True})</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>OD</strong> – Overcomplete nD-DCT dictionary</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><cite>ndarray</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pysparse.representation">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pysparse.representation" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pysparse.sampling.html" class="btn btn-neutral float-right" title="pysparse.sampling package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pysparse.reconstruction.html" class="btn btn-neutral" title="pysparse.reconstruction package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Zhi Liu.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js"></script>
+      <script type="text/javascript" src="_static/katex_autorenderer.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
