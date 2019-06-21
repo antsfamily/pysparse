@@ -19,7 +19,8 @@ def psnr(o, r, Vpeak=None, mode='simple'):
 
     The Peak Signal-to-Noise Ratio (PSNR) is expressed as
 
-        $$10 \log10(\frac{V_{peak}^2}{MSE} )$$
+        .. math::        
+           10 \log10(\frac{V_{peak}^2}{MSE})
 
         For float data, V_{peak} = 1;
         FOr interges, V_{peak} = maxN, e.g. uint8: 255, uint16: 65535 ...
