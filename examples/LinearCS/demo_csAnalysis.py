@@ -38,9 +38,10 @@ k1 = int(N / 8)
 
 dictype = 'DCT'
 mestype = 'Gaussian'
+seed = 2019
 
 if mestype is 'Gaussian':
-    Phi = pys.gaussian((M, N), verbose=True)
+    Phi = pys.gaussian((M, N), seed=seed, verbose=True)
 
 print("===observation...")
 
@@ -72,8 +73,8 @@ Y = np.matmul(Phi, X)
 
 X1 = pys.romp(
     Y, Phi, k=k1, alpha=alpha, normalize=True, tol=1e-16, verbose=True)
-# if dictype is not None:
-#     X1 = np.matmul(D, X1)
+if dictype is not None:
+    X1 = np.matmul(D, X1)
 X1 = pys.scale(X1, sto=[0, 255], sfrom=sfrom, istrunc=True)
 X1 = X1.astype(X.dtype)
 
@@ -115,8 +116,8 @@ Y = np.matmul(A, X)
 
 X4 = pys.romp(
     Y, A, k=k1, alpha=alpha, normalize=True, tol=1e-16, verbose=True)
-# if dictype is not None:
-#     X4 = np.matmul(D, X4)
+if dictype is not None:
+    X4 = np.matmul(D, X4)
 X4 = pys.scale(X4, sto=[0, 255], sfrom=sfrom, istrunc=True)
 X4 = X4.astype(X.dtype)
 
@@ -140,4 +141,5 @@ plt.subplot(224)
 plt.imshow(X4)
 plt.title(r'CS(${\bf A},{\bf A},k=$' +
           str(k1) + ')' + '\nPSNR: %.2f' % PSNR4 + 'dB')
+plt.tight_layout()
 plt.show()

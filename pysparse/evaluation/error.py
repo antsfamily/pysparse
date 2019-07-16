@@ -13,14 +13,14 @@ def mse(o, r):
     The Mean Squared Error (MSE) is expressed as
 
     .. math::
-        MSE = \frac{1}{MN}\sum_{i=1}^{M}\sum_{j=0}^{N}[{\bm I}(i,j), \hat{\bm I}(i, j)]^2
+        {\rm MSE} = \frac{1}{MN}\sum_{i=1}^{M}\sum_{j=0}^{N}[{\bm I}(i,j), \hat{\bm I}(i, j)]^2
 
     Arguments
     ---------------
     o : ndarray
         Orignal signal matrix.
 
-    r : ndarray 
+    r : ndarray
         Reconstructed signal matrix
 
     Returns
@@ -39,7 +39,7 @@ def rmse(o, r):
     The Root Mean Squared Error (MSE) is expressed as
 
     .. math::
-        RMSE = \sqrt{\frac{1}{MN}\sum_{i=1}^{M}\sum_{j=0}^{N}[{\bm I}(i,j), \hat{\bm I}(i, j)]^2}
+        {\rm RMSE} = \sqrt{\frac{1}{MN}\sum_{i=1}^{M}\sum_{j=0}^{N}[{\bm I}(i,j), \hat{\bm I}(i, j)]^2}
 
     Arguments
     ---------------

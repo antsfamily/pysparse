@@ -16,6 +16,7 @@ from .sampling.mask import linemask
 
 from . import representation
 from .representation.dcts import dctmat, dct1, dct2, idct1, idct2, dctdict, odctdict, odctndict
+from .representation.dfts import dftmat, dft1, dft2, idft1, idft2, dftdict, odftdict, odftndict
 
 
 from . import evaluation

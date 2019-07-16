@@ -117,6 +117,9 @@ def showdict(D, rcsize=None, stride=None, plot=True, bgcolorv=0, cmap=None, titl
     A = np.transpose(A, (3, 1, 0, 2)).reshape(
         rows, cols, aH, aW, aC).swapaxes(
         1, 2).reshape(rows * aH, cols * aW, aC)
+    # A = np.transpose(A, (3, 0, 1, 2)).reshape(
+    #     rows, cols, aH, aW, aC).swapaxes(
+    #     1, 2).reshape(rows * aH, cols * aW, aC)
 
     aH, aW, aC = A.shape
     A = A[0:aH - stride[0], 0:aW - stride[1], :]

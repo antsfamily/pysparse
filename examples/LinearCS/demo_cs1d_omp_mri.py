@@ -31,14 +31,15 @@ sfrom = [0, 255]
 # sfrom = None
 sto = [0, 255]
 
-CR = 4
+CR = 2
 dictype = 'DCT'
+dictype = 'DFT'
 # dictype = None
 mestype = 'Gaussian'
 
-M = int(H * W / CR)
-N = int(H * W)
-k = int(H * W)
+# M = int(H * W / CR)
+# N = int(H * W)
+# k = int(H * W)
 
 M = int(H / CR)
 N = int(H)
@@ -47,19 +48,19 @@ k = 100
 if mestype is 'Gaussian':
     Phi = pys.gaussian((M, N), verbose=True)
 
+Psi = None
 if dictype is 'DCT':
     Psi = pys.dctdict(N)
-else:
-    Psi = None
-
+if dictype is 'DFT':
+    Psi = pys.dftmat(N)
 print("===observation...")
 
 y = np.matmul(Phi, X)
 print(Phi.shape, X.shape, y.shape)
 
-X1 = pys.cs1d(y, Phi, Psi=None, optim='OMP', k=k,
+X1 = pys.cs1d(y, Phi, Psi=Psi, optim='OMP', k=k,
               tol=None, osshape=(H, W), verbose=True)
-I1 = np.fft.ifft2(X1)
+I1 = np.abs(np.fft.ifft2(X1))
 I1 = pys.scale(I1, sto=[0, 255], sfrom=sfrom, istrunc=True)
 I1 = I1.astype('uint8')
 

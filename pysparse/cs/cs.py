@@ -24,7 +24,7 @@ def cs1d(y, Phi, Psi=None, optim='OMP', k=1000, tol=1e-8, osshape=None, verbose=
     Arguments
     ----------------------
     y : ndarray
-        the mesurements :math:`{\bm y}`, if ndarray, each colum is a mesurement 
+        the mesurements :math:`{\bm y}`, if ndarray, each colum is a mesurement
     Phi : 2darray
         the mesurement matrix :math:`{\bm \Phi}`
 

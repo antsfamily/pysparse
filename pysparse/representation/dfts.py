@@ -8,18 +8,18 @@ import numpy as np
 from pysparse.utils.const import *
 
 
-def dctmat(N):
-    r"""Discrete cosine transform matrix
+def dftmat(N):
+    r"""Discrete Fourier transform matrix
 
     .. math::
        {\bm y} = {\bm D}{\bm x}
-       :label: equ-DCT_MatrixRep
+       :label: equ-DFT_MatrixRep
 
     where, :math:`{\bm x} = (x_n)_{N\times 1}, x_n = x[n]`, :math:`{\bm D} = (d_{ij})_{N\times N}` can be expressed as
 
     .. math::
        {\bm D} = \sqrt{\frac{2}{N}}\left[\begin{array}{cccc}{1/\sqrt{2}} & {1/\sqrt{2}} & {1/\sqrt{2}} & {\cdots} & {1/\sqrt{2}} \\ {\cos \frac{\pi}{2 N}} & {\cos \frac{3 \pi}{2 N}} & {\cos \frac{5 \pi}{2 N}} & {\cdots} & {\cos \frac{(2 N-1) \pi}{2 N}} \\ {\vdots} & {\vdots} & {\vdots} & {\vdots} \\ {\cos \frac{(N-1) \pi}{2 N}} & {\cos \frac{3(N-1) \pi}{2 N}} & {\cos \frac{5(N-1) \pi}{2 N}} & {\cdots} & {\cos \frac{(2 N-1)(N-1) \pi}{2 N}}\end{array}\right]
-       :label: equ-DCT_Matrix
+       :label: equ-DFT_Matrix
 
     Arguments
     ----------------
@@ -29,33 +29,30 @@ def dctmat(N):
     Returns
     -------------------
     T : ndarray
-        DCT matrix.
+        DFT matrix.
     """
 
-    # r, c = np.mgrid[0: N, 0: N]
+    # r, c = np.mgrid[0:N, 0:N]
 
     # T = np.sqrt(2 / N) * np.cos(PI * (2 * c + 1) * r / (2 * N))
-    # T[0, :] = T[1, :] / np.sqrt(2)
+    # T[0, :] = T[0, :] / np.sqrt(2)
 
-    r, c = np.mgrid[0:N, 0:N]
-
-    T = np.sqrt(2 / N) * np.cos(PI * (2 * c + 1) * r / (2 * N))
-    T[0, :] = T[0, :] / np.sqrt(2)
+    T = np.fft.fft(np.eye(N)) / np.sqrt(N * 1.0)
 
     return T
 
 
-def dct1(x, axis=0):
+def dft1(x, axis=0):
     r"""1-Dimension Discrete cosine transform
 
-       The DCT of signal :math:`x[n], n=0, 1,\cdots, N-1` is expressed as
+       The DFT of signal :math:`x[n], n=0, 1,\cdots, N-1` is expressed as
 
        .. math::
-          y[k] = {\rm DCT}(x[n]) = \left\{ {\begin{array}{lll}
+          y[k] = {\rm DFT}(x[n]) = \left\{ {\begin{array}{lll}
               {\sqrt{\frac{2}{N}}\sum_{n=0}^{N-1}x[n]\frac{1}{\sqrt 2}, \quad k=0}\\
               {\sqrt{\frac{2}{N}}\sum_{n=0}^{N-1}x[n]{\rm cos}\frac{(2n + 1)k\pi}{2N}, \quad k=1, \cdots, N-1}
               \end{array}} \right.
-          :label: equ-DCT
+          :label: equ-DFT
 
        where, :math:`k=0, 1, \cdots, N-1`
 
@@ -83,23 +80,23 @@ def dct1(x, axis=0):
     x = np.array(x)
     if np.ndim(x) > 1:
         N = np.size(x, axis=axis)
-        T = dctmat(N)
+        T = dftmat(N)
         if axis is 0:
             return np.matmul(T, x)
         if axis is 1:
             return np.matmul(T, x.transpose()).transpose()
     if np.ndim(x) is 1:
         N = np.size(x)
-        T = dctmat(N)
+        T = dftmat(N)
         return np.matmul(T, x)
 
 
-def idct1(y, axis=0):
+def idft1(y, axis=0):
     r"""1-Dimension Inverse Discrete cosine transform
 
     .. math::
        {\bm x} = {\bm D}^{-1}{\bm y} = {\bm D}^T{\bm y}
-       :label: equ-IDCT_MatrixRep
+       :label: equ-IDFT_MatrixRep
 
     Arguments
     -------------
@@ -109,7 +106,7 @@ def idct1(y, axis=0):
     Keyword Arguments
     ------------------
     axis : number
-        IDCT along which axis (default: {0})
+        IDFT along which axis (default: {0})
 
     Returns
     -------------
@@ -120,22 +117,22 @@ def idct1(y, axis=0):
     y = np.array(y)
     if np.ndim(y) > 1:
         N = np.size(y, axis=axis)
-        # T = np.linalg.inv(dctmat(N))
-        T = dctmat(N).transpose()
+        # T = np.linalg.inv(dftmat(N))
+        T = dftmat(N).transpose()
         if axis is 0:
             return np.matmul(T, y)
         if axis is 1:
             return np.matmul(T, y.transpose()).transpose()
     if np.ndim(y) is 1:
         N = np.size(y)
-        T = dctmat(N)
+        T = dftmat(N)
         return np.matmul(T, y)
 
 
-def dct2(X):
+def dft2(X):
     r"""2-Dimension Discrete cosine transform
 
-    dct1(dct1(X, axis=0), axis=1)
+    dft1(dft1(X, axis=0), axis=1)
 
     Arguments
     -----------------
@@ -148,13 +145,13 @@ def dct2(X):
         coefficients matrix
     """
 
-    return dct1(dct1(X, axis=0), axis=1)
+    return dft1(dft1(X, axis=0), axis=1)
 
 
-def idct2(X):
+def idft2(X):
     r"""2-Dimension Inverse Discrete cosine transform
 
-    idct1(idct1(X, axis=0), axis=1)
+    idft1(idft1(X, axis=0), axis=1)
 
     Arguments
     --------------
@@ -167,16 +164,16 @@ def idct2(X):
         coefficients matrix
     """
 
-    return idct1(idct1(X, axis=0), axis=1)
+    return idft1(idft1(X, axis=0), axis=1)
 
 
-def dctdict(N, isnorm=False, verbose=False):
-    r"""Complete DCT dictionary
+def dftdict(N, isnorm=False, verbose=False):
+    r"""Complete DFT dictionary
 
 
     .. math::
        {\bm D} = \sqrt{\frac{2}{N}}\left[\begin{array}{cccc}{1/\sqrt{2}} & {1/\sqrt{2}} & {1/\sqrt{2}} & {\cdots} & {1/\sqrt{2}} \\ {\cos \frac{\pi}{2 N}} & {\cos \frac{3 \pi}{2 N}} & {\cos \frac{5 \pi}{2 N}} & {\cdots} & {\cos \frac{(2 N-1) \pi}{2 N}} \\ {\vdots} & {\vdots} & {\vdots} & {\vdots} \\ {\cos \frac{(N-1) \pi}{2 N}} & {\cos \frac{3(N-1) \pi}{2 N}} & {\cos \frac{5(N-1) \pi}{2 N}} & {\cdots} & {\cos \frac{(2 N-1)(N-1) \pi}{2 N}}\end{array}\right]
-       :label: equ-DCT_Matrix
+       :label: equ-DFT_Matrix
 
     Because :math:`{\bm z} = {\bm D}{\bm x}`, :math:`{\bm D}{\bm D}^T = {\bm I}`
     So, :math:`{\bm x} = {\bm D}^T{\bm z}`
@@ -189,12 +186,12 @@ def dctdict(N, isnorm=False, verbose=False):
     Returns
     -------------
     D : numpy array
-        DCT dictionary ( :math:`{\bm D}^T` ).
+        DFT dictionary ( :math:`{\bm D}^T` ).
     """
     if verbose:
-        print("================in dctdict================")
+        print("================in dftdict================")
 
-    D = dctmat(N)
+    D = dftmat(N)
 
     if verbose:
         print('---Done!')
@@ -202,16 +199,16 @@ def dctdict(N, isnorm=False, verbose=False):
     return D.transpose()
 
 
-def odctdict(dictshape, isnorm=False, verbose=False):
-    r"""Overcomplete 1D-DCT dictionary
+def odftdict(dictshape, isnorm=False, verbose=False):
+    r"""Overcomplete 1D-DFT dictionary
 
     .. math::
        {\bm D} = \sqrt{\frac{2}{N}}\left[\begin{array}{cccc}{1/\sqrt{2}} & {1/\sqrt{2}} & {1/\sqrt{2}} & {\cdots} & {1/\sqrt{2}} \\ {\cos \frac{\pi}{2 N}} & {\cos \frac{3 \pi}{2 N}} & {\cos \frac{5 \pi}{2 N}} & {\cdots} & {\cos \frac{(2 N-1) \pi}{2 N}} \\ {\vdots} & {\vdots} & {\vdots} & {\vdots} \\ {\cos \frac{(M-1) \pi}{2 N}} & {\cos \frac{3(M-1) \pi}{2 N}} & {\cos \frac{5(M-1) \pi}{2 N}} & {\cdots} & {\cos \frac{(2 N-1)(M-1) \pi}{2 N}}\end{array}\right]
-       :label: equ-ODCT_Matrix
+       :label: equ-ODFT_Matrix
 
     .. math::
        {\bm D} = \left[\frac{{\bm d}_0}{\|{\bm d}_0\|_2}, \frac{{\bm d}_1}{\|{\bm d}_1\|_2},\cdots, \frac{{\bm d}_{N-1}}{\|{\bm d}_{N-1}\|_2}\right]
-       :label: equ-ODCT_Matrix_normed
+       :label: equ-ODFT_Matrix_normed
 
     Arguments
     ----------------------
@@ -227,13 +224,13 @@ def odctdict(dictshape, isnorm=False, verbose=False):
     """
 
     if verbose:
-        print("================in odctdict================")
+        print("================in odftdict================")
 
     M, N = dictshape
-    # N, M = dictshape
+    N, M = dictshape
 
     if verbose:
-        print("---Construct Overcomplete 1D-DCT dictionary...")
+        print("---Construct Overcomplete 1D-DFT dictionary...")
 
     r, c = np.mgrid[0:M, 0:N]
 
@@ -252,26 +249,25 @@ def odctdict(dictshape, isnorm=False, verbose=False):
     if verbose:
         print("---Done!")
 
-    return D
-    # return D.transpose()
+    return D.transpose()
 
 
-def odctndict(dictshape, axis=-1, isnorm=False, verbose=False):
-    r"""generates Overcomplete nD-DCT dictionary
+def odftndict(dictshape, axis=-1, isnorm=False, verbose=False):
+    r"""generates Overcomplete nD-DFT dictionary
 
     .. math::
        {\bm D}_{nd} = {\bm D}_{(n-1)d} \otimes {\bm D}_{(n-1)d}.
-       :label: equ-CreatenDDCT_Matrix
+       :label: equ-CreatenDDFT_Matrix
 
     Arguments
     ---------------------
     dictshape : `list` or `tuple`
-        shape of DCT dict [M, N]
+        shape of DFT dict [M, N]
 
     Keyword Arguments
     ---------------------
     axis : `number`
-        Axis along which the dct is computed. If -1 then the transform
+        Axis along which the dft is computed. If -1 then the transform
         is multidimensional(default=-1) (default: {-1})
 
     isnorm : `bool`
@@ -283,21 +279,21 @@ def odctndict(dictshape, axis=-1, isnorm=False, verbose=False):
     Returns
     ---------------------
     OD : `ndarray`
-        Overcomplete nD-DCT dictionary
+        Overcomplete nD-DFT dictionary
     """
 
     if verbose:
-        print("================in odctndict================")
+        print("================in odftndict================")
     (M, N) = dictshape
     if verbose:
-        print("===Construct Overcomplete nD-DCT dictionary...")
-        print("---DCT dictionary shape: ", dictshape)
+        print("===Construct Overcomplete nD-DFT dictionary...")
+        print("---DFT dictionary shape: ", dictshape)
 
     MM, NN = dictshape
     M = int(np.sqrt(MM))
     N = int(np.sqrt(NN))
 
-    D = odctdict((M, N), isnorm=isnorm)
+    D = odftdict((M, N), isnorm=isnorm)
     D = np.kron(D, D)
 
     if verbose:
@@ -312,35 +308,35 @@ if __name__ == '__main__':
     import scipy.io as sio
 
     x = [0, 1, 2, 3, 4, 5]
-    y = dct1(x)
+    y = dft1(x)
     print(y)
 
     print("----------------------")
-    print(dctmat(3))
-    print(dctdict(3))
-    T = dctmat(6)
+    print(dftmat(3))
+    print(dftdict(3))
+    T = dftmat(6)
     print(np.matmul(T, T.transpose()))
 
     x = [[0, 1, 2], [3, 4, 5]]
 
     print("----------------------")
-    y = dct1(x, axis=0)  # Matlab--> dct(x)
+    y = dft1(x, axis=0)  # Matlab--> dft(x)
     print(y)
-    y = dct1(x, axis=1)  # Matlab--> dct(x')'
+    y = dft1(x, axis=1)  # Matlab--> dft(x')'
     print(y)
 
     print("----------------------")
-    y = dct2(x)
+    y = dft2(x)
     print(y)
 
-    print("---------IDCT-------------")
-    x = idct2(y)
+    print("---------IDFT-------------")
+    x = idft2(y)
     print(x)
 
-    print("---------ODCT-------------")
+    print("---------ODFT-------------")
     dictshape = (4096, 64)
-    OD = odctdict(dictshape=dictshape, isnorm=True)
-    OD = odctndict(dictshape=dictshape, axis=2, isnorm=True)
+    OD = odftdict(dictshape=dictshape, isnorm=True)
+    OD = odftndict(dictshape=dictshape, axis=2, isnorm=True)
     print(OD.shape)
 
     sio.savemat('OD.mat', {'OD': OD})
@@ -351,5 +347,5 @@ if __name__ == '__main__':
 
     A = pys.showdict(OD, rcsize=(8, 8), stride=(0, 0), bgcolorv=-0.06)
 
-    OD = pys.odctndict(dictshape=(4096, 64), isnorm=True)
+    OD = pys.odftndict(dictshape=(4096, 64), isnorm=True)
     A1 = pys.showdict(OD, rcsize=(8, 8), stride=(0, 0), bgcolorv=-0.03)

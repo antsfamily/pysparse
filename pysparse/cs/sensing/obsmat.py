@@ -8,7 +8,7 @@
 # @Note    : https://www.cnblogs.com/AndyJee/p/5091932.html
 #
 import numpy as np
-from scipy.linalg import toeplitz, circulant, hankel
+from scipy.linalg import circulant, hankel
 
 
 def normalize(v):
@@ -25,7 +25,7 @@ def column_normalize(A):
     return np.hstack([normalize(col) for col in cols])
 
 
-def gaussian0(shape, verbose=True):
+def gaussian0(shape, seed=None, verbose=True):
     r"""generates Gauss observation matrix
 
     Generates M-by-N Gauss observation matrix
@@ -49,6 +49,8 @@ def gaussian0(shape, verbose=True):
         Gauss observation matrix :math:`\bm \Phi`.
     """
 
+    np.random.seed(seed)
+
     (M, N) = shape
     if verbose:
         print("================in gauss================")
@@ -64,25 +66,25 @@ def gaussian0(shape, verbose=True):
     return Phi
 
 
-def bernoulli0(shape, verbose=True):
+def bernoulli0(shape, seed=None, verbose=True):
     r"""generates Bernoulli observation matrix
 
     Generates M-by-N Bernoulli observation matrix
 
     .. math::
-        {\bm \Phi}_{ij} =\left\{\begin{array}{cc}{+\frac{1}{\sqrt{M}}} & {P=\frac{1}{2}} \\ 
+        {\bm \Phi}_{ij} =\left\{\begin{array}{cc}{+\frac{1}{\sqrt{M}}} & {P=\frac{1}{2}} \\
                        {-\frac{1}{\sqrt{M}}} & {P=\frac{1}{2}}\end{array}=
                        \frac{1}{\sqrt{M}}\left\{\begin{array}{cc}{+1} & {P=\frac{1}{2}} \\ {-1} & {P=\frac{1}{2}}\end{array}\right.\right.
 
     Arguments
     ----------------
-    shape : `list` or `tuple` 
+    shape : `list` or `tuple`
         shape of Bernoulli observation matrix [M, N]
 
     Keyword Arguments
     -------------------
 
-    verbose : `bool` 
+    verbose : `bool`
         display log info (default: {True})
 
     Returns
@@ -97,6 +99,8 @@ def bernoulli0(shape, verbose=True):
         print("===Construct Bernoulli observation matrix...")
         print("---Bernoulli observation matrix shape: ", shape)
 
+    np.random.seed(seed)
+
     Phi = np.random.randint(low=0, high=2, size=(M, N))  # (0, 1)
     Phi = np.sqrt(1.0 / M) * Phi  # (0, 1/M)
 
@@ -109,17 +113,17 @@ def bernoulli0(shape, verbose=True):
     return Phi
 
 
-def bernoulli(shape, verbose=True):
+def bernoulli(shape, seed=None, verbose=True):
     r"""
-    return a matrix, 
+    return a matrix,
     which have bernoulli distribution elements
     columns are l2 normalized
     """
-
+    np.random.seed(seed)
     return np.random.choice((0, 1), shape)
 
 
-def gaussian(shape, verbose=True):
+def gaussian(shape, seed=None, verbose=True):
     r"""generates Gauss observation matrix
 
     Generates M-by-N Gauss observation matrix which have gaussian distribution elements(
@@ -144,6 +148,8 @@ def gaussian(shape, verbose=True):
         Gauss observation matrix :math:`\bm A`.
     """
 
+    np.random.seed(seed)
+
     m, n = shape
     A = np.random.randn(m, n)
     A = column_normalize(A)
@@ -160,7 +166,7 @@ def toeplitz(shape, verbose=True):
 
     Arguments
     ------------
-    shape : `list` or `tuple` 
+    shape : `list` or `tuple`
         shape of Toeplitz observation matrix [M, N]
 
     Keyword Arguments
@@ -170,7 +176,7 @@ def toeplitz(shape, verbose=True):
 
     Returns
     -------------
-    A : `ndarray` 
+    A : `ndarray`
         Toeplitz observation matrix :math:`\bm A`.
     """
 

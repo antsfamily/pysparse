@@ -15,7 +15,8 @@ from sklearn.linear_model import OrthogonalMatchingPursuit
 def omp0(y, A, normalize=False, tol=1.0e-6, verbose=False):
     r"""omp
 
-    The optimization objective for Lasso is::
+    The optimization objective for Lasso is
+
     .. math::
         (1 / (2 * n_samples)) * ||y - Xw||^2_2 + ||w||_0
 
@@ -23,10 +24,12 @@ def omp0(y, A, normalize=False, tol=1.0e-6, verbose=False):
     the Elastic Net with ``l1_ratio=1.0`` (no L2 penalty).
 
     Arguments
+    ---------------------
      y {[type]} -- [description]
      A {[type]} -- [description]
 
-    Keyword Arguments:
+    Keyword Arguments
+    ---------------------
      alpha {float, optional} -- Constant that multiplies the L1 term. (default: {0.5})
      normalize {boolean} -- If True, the regressors X will be normalized before regression by
                             subtracting the mean and dividing by the l2-norm. (default: {True})
@@ -49,7 +52,7 @@ def omp0(y, A, normalize=False, tol=1.0e-6, verbose=False):
 def omp(Y, A, k=None, normalize=False, tol=1.0e-6, verbose=False):
     r"""Orthogonal Matching Pursuit
 
-    OMP find the sparse most decomposition 
+    OMP find the sparse most decomposition
 
     .. math::
        {\bm y} = {\bm A}{\bm \alpha} = {\alpha}_1 {\bm a}_1 + {\alpha}_2 {\bm a}_2 + \cdots {\alpha}_n {\bm a}_n,
@@ -58,31 +61,31 @@ def omp(Y, A, k=None, normalize=False, tol=1.0e-6, verbose=False):
     The optimization objective for omp is::
 
     .. math::
-       {\rm min}_{\bm{x}} = \|{\bm x}\|_p + \lambda\|{\bm y} - {\bm c}{\bm x}\|_2.
+       {\rm min}_{\bm x} = \|{\bm x}\|_p + \lambda\|{\bm y} - {\bm A}{\bm x}\|_2.
        :label: equ-CS1d_Optimizationnost
 
     Parameters
     --------------
     y : ndarray
-        signal vector or matrix, if :math:`{\bm y}\in{\mathbb R}^{M\times 1}` is a matrix, 
-        then apply OMP on each column 
+        signal vector or matrix, if :math:`{\bm y}\in{\mathbb R}^{M\times 1}` is a matrix,
+        then apply OMP on each column
     A : ndarary
         overcomplete dictionary (:math:`{\bm A}\in {\mathbb R}^{M\times N}` )
 
     Keyword Arguments
     ------------------
     k : integer
-        The sparse degree (default: size of :math:`{\bm x}`)
+       The sparse degree (default: size of :math:`{\bm x}`)
 
     normalize : boolean
-        If True, the regressors X will be normalized before regression by
-        subtracting the mean and dividing by the l2-norm. (default: {True})
+       If True, the regressors X will be normalized before regression by
+       subtracting the mean and dividing by the l2-norm. (default: {True})
 
     tol : float
-        The tolerance for the optimization (default: {1.0e-6})
+       The tolerance for the optimization (default: {1.0e-6})
 
     verbose : boolean
-        show more log info.
+       show more log info.
     """
 
     if verbose:
@@ -101,7 +104,9 @@ def omp(Y, A, k=None, normalize=False, tol=1.0e-6, verbose=False):
 
     MY, NY = Y.shape
 
-    X = np.zeros((N, NY))
+    dtype = Y.dtype
+
+    X = np.zeros((N, NY), dtype)
 
     for n in range(NY):
         # print(n)
@@ -121,7 +126,7 @@ def omp(Y, A, k=None, normalize=False, tol=1.0e-6, verbose=False):
             yHat = np.matmul(AI, s)
             r = y - yHat
 
-        x = np.zeros(N)
+        x = np.zeros(N, dtype)
         x[I] = s
         X[:, n] = x
 
@@ -147,13 +152,13 @@ def romp(Y, A, k=None, alpha=1e-6, normalize=False, tol=1.0e-6, verbose=False):
     .. math::
         ({\bm A}_{{\mathbb I}_t}^T{\bm A}_{{\mathbb I}_t} + \alpha {\bm I})^{-1}
 
-    where, :math:`\alpha > 0`. 
+    where, :math:`\alpha > 0`.
 
     Parameters
     --------------
     y : ndarray
-        signal vector or matrix, if :math:`{\bm y}\in{\mathbb R}^{M\times 1}` is a matrix, 
-        then apply OMP on each column 
+        signal vector or matrix, if :math:`{\bm y}\in{\mathbb R}^{M\times 1}` is a matrix,
+        then apply OMP on each column
 
     A : ndarary
         overcomplete dictionary ( :math:`{\bm A}\in {\mathbb R}^{M\times N}` )
@@ -163,7 +168,7 @@ def romp(Y, A, k=None, alpha=1e-6, normalize=False, tol=1.0e-6, verbose=False):
     k : integer
         The sparse degree (default: size of :math:`{\bm x}`)
 
-    alpha : float 
+    alpha : float
         The regularization factor (default: 1.0e-6)
 
     normalize : boolean
@@ -192,7 +197,11 @@ def romp(Y, A, k=None, alpha=1e-6, normalize=False, tol=1.0e-6, verbose=False):
 
     MY, NY = Y.shape
 
-    X = np.zeros((N, NY))
+    dtype = Y.dtype
+    if np.iscomplex(A).any():
+        dtype = A.dtype
+
+    X = np.zeros((N, NY), dtype)
 
     for n in range(NY):
         # print(n)
@@ -214,7 +223,7 @@ def romp(Y, A, k=None, alpha=1e-6, normalize=False, tol=1.0e-6, verbose=False):
             yHat = np.matmul(AI, s)
             r = y - yHat
 
-        x = np.zeros(N)
+        x = np.zeros(N, dtype)
         x[I] = s
         X[:, n] = x
 
