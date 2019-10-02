@@ -17,36 +17,40 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js"></script>
+        <script type="text/javascript" src="_static/katex_autorenderer.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/katex-math.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="pysparse.sampling package" href="pysparse.sampling.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -81,23 +85,8 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pysparse</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="pysparse.html">pysparse package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="pysparse.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="pysparse.cs.html">pysparse.cs package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pysparse.evaluation.html">pysparse.evaluation package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pysparse.reconstruction.html">pysparse.reconstruction package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pysparse.representation.html">pysparse.representation package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pysparse.sampling.html">pysparse.sampling package</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">pysparse.utils package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pysparse.html#module-pysparse">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pysparse</a></li>
 </ul>
 
             
@@ -193,27 +182,31 @@
 \[y = (d-c)*(x-a) / (b-a) + c.
 
 \]</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<em>array_like</em>) – The data to be scaled.</p></li>
-<li><p><strong>sto</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>, </em><em>optional</em>) – Specifies the range of data after beening scaled. Default [0, 1].</p></li>
-<li><p><strong>sfrom</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>, </em><em>optional</em>) – Specifies the range of data. Default [min(X), max(X)].</p></li>
-<li><p><strong>istrunc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Specifies wether to truncate the data to [a, b], For example,
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>array_like</em>) – The data to be scaled.</li>
+<li><strong>sto</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>, </em><em>optional</em>) – Specifies the range of data after beening scaled. Default [0, 1].</li>
+<li><strong>sfrom</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>, </em><em>optional</em>) – Specifies the range of data. Default [min(X), max(X)].</li>
+<li><strong>istrunc</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Specifies wether to truncate the data to [a, b], For example,
 If sfrom == [a, b] and ‘istrunc’ is true,
-then X[X &lt; a] == a and X[X &gt; b] == b.</p></li>
-<li><p><strong>rich</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If you want to see what the data is scaled from and scaled to,
-then you should set it to true</p></li>
+then X[X &lt; a] == a and X[X &gt; b] == b.</li>
+<li><strong>rich</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If you want to see what the data is scaled from and scaled to,
+then you should set it to true</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>out</strong> (<em>ndarray</em>) – Scaled data array.</p></li>
-<li><p><strong>sfrom, sto</strong> (<em>list or tuple</em>) – If rich is true, they will also be returned</p></li>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>out</strong> (<em>ndarray</em>) – Scaled data array.</li>
+<li><strong>sfrom, sto</strong> (<em>list or tuple</em>) – If rich is true, they will also be returned</li>
 </ul>
 </p>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -223,33 +216,37 @@ then you should set it to true</p></li>
 <dt id="pysparse.utils.show.showdict">
 <code class="descclassname">pysparse.utils.show.</code><code class="descname">showdict</code><span class="sig-paren">(</span><em>D</em>, <em>rcsize=None</em>, <em>stride=None</em>, <em>plot=True</em>, <em>bgcolorv=0</em>, <em>cmap=None</em>, <em>title=None</em>, <em>xlabel=None</em>, <em>ylabel=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/utils/show.html#showdict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.utils.show.showdict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Trys to show image blocks in one image.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>D</strong> (<em>array_like</em>) – Blocks to be shown, a bH-bW-bC-bN numpy ndarray.</p></li>
-<li><p><strong>rcsize</strong> (<em>int tuple</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em>) – Specifies how many rows and cols of blocks that you want to show,
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>D</strong> (<em>array_like</em>) – Blocks to be shown, a bH-bW-bC-bN numpy ndarray.</li>
+<li><strong>rcsize</strong> (<em>int tuple</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em>) – Specifies how many rows and cols of blocks that you want to show,
 e.g. (rows, cols). If not given, rcsize=(rows, clos) will be computed
-automaticly.</p></li>
-<li><p><strong>stride</strong> (<em>int tuple</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em>) – The step size (blank pixels nums) in row and col between two blocks.
-If not given, stride=(1,1).</p></li>
-<li><p><strong>plot</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – True for ploting, False for silent and returns a H-W-C numpy ndarray
-for showing.</p></li>
-<li><p><strong>bgcolorv</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em>) – The background color, 1 for white, 0 for black. Default, 0.</p></li>
+automaticly.</li>
+<li><strong>stride</strong> (<em>int tuple</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em>) – The step size (blank pixels nums) in row and col between two blocks.
+If not given, stride=(1,1).</li>
+<li><strong>plot</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – True for ploting, False for silent and returns a H-W-C numpy ndarray
+for showing.</li>
+<li><strong>bgcolorv</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em>) – The background color, 1 for white, 0 for black. Default, 0.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>out</strong> – A H-W-C numpy ndarray for showing.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>ndarray or <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>out</strong> – A H-W-C numpy ndarray for showing.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray or <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p><code class="xref py py-func docutils literal notranslate"><span class="pre">odctdict.()</span></code></p>
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-func docutils literal notranslate"><span class="pre">odctdict.()</span></code></p>
 </div>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">pys</span><span class="o">.</span><span class="n">odctdict</span><span class="p">((</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">pys</span><span class="o">.</span><span class="n">odctdict</span><span class="p">((</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">showdict</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">bgcolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -270,7 +267,7 @@ for showing.</p></li>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="pysparse.sampling.html" class="btn btn-neutral" title="pysparse.sampling package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pysparse.sampling.html" class="btn btn-neutral float-left" title="pysparse.sampling package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -279,7 +276,7 @@ for showing.</p></li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Zhi Liu.
+        &copy; Copyright 2018, Zhi Liu
 
     </p>
   </div>
@@ -296,39 +293,16 @@ for showing.</p></li>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js"></script>
-      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js"></script>
-      <script type="text/javascript" src="_static/katex_autorenderer.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -12,6 +12,14 @@ pysparse.representation.dcts module
     :undoc-members:
     :show-inheritance:
 
+pysparse.representation.dfts module
+-----------------------------------
+
+.. automodule:: pysparse.representation.dfts
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

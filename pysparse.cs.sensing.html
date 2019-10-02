@@ -17,15 +17,24 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js"></script>
+        <script type="text/javascript" src="_static/katex_autorenderer.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/katex-math.css" type="text/css" />
@@ -33,21 +42,16 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="pysparse.evaluation package" href="pysparse.evaluation.html" />
     <link rel="prev" title="pysparse.cs.recovery package" href="pysparse.cs.recovery.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -82,23 +86,8 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pysparse</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="pysparse.html">pysparse package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="pysparse.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="pysparse.cs.html">pysparse.cs package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pysparse.evaluation.html">pysparse.evaluation package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pysparse.reconstruction.html">pysparse.reconstruction package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pysparse.representation.html">pysparse.representation package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pysparse.sampling.html">pysparse.sampling package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pysparse.utils.html">pysparse.utils package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pysparse.html#module-pysparse">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pysparse</a></li>
 </ul>
 
             
@@ -178,7 +167,7 @@
 <span id="pysparse-cs-sensing-obsmat-module"></span><h2>pysparse.cs.sensing.obsmat module<a class="headerlink" href="#module-pysparse.cs.sensing.obsmat" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="pysparse.cs.sensing.obsmat.bernoulli">
-<code class="descclassname">pysparse.cs.sensing.obsmat.</code><code class="descname">bernoulli</code><span class="sig-paren">(</span><em>shape</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/cs/sensing/obsmat.html#bernoulli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.cs.sensing.obsmat.bernoulli" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pysparse.cs.sensing.obsmat.</code><code class="descname">bernoulli</code><span class="sig-paren">(</span><em>shape</em>, <em>seed=None</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/cs/sensing/obsmat.html#bernoulli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.cs.sensing.obsmat.bernoulli" title="Permalink to this definition">¶</a></dt>
 <dd><p>return a matrix,
 which have bernoulli distribution elements
 columns are l2 normalized</p>
@@ -186,7 +175,7 @@ columns are l2 normalized</p>
 
 <dl class="function">
 <dt id="pysparse.cs.sensing.obsmat.bernoulli0">
-<code class="descclassname">pysparse.cs.sensing.obsmat.</code><code class="descname">bernoulli0</code><span class="sig-paren">(</span><em>shape</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/cs/sensing/obsmat.html#bernoulli0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.cs.sensing.obsmat.bernoulli0" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pysparse.cs.sensing.obsmat.</code><code class="descname">bernoulli0</code><span class="sig-paren">(</span><em>shape</em>, <em>seed=None</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/cs/sensing/obsmat.html#bernoulli0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.cs.sensing.obsmat.bernoulli0" title="Permalink to this definition">¶</a></dt>
 <dd><p>generates Bernoulli observation matrix</p>
 <p>Generates M-by-N Bernoulli observation matrix</p>
 <div class="math">
@@ -195,20 +184,21 @@ columns are l2 normalized</p>
                \frac{1}{\sqrt{M}}\left\{\begin{array}{cc}{+1} & {P=\frac{1}{2}} \\ {-1} & {P=\frac{1}{2}}\end{array}\right.\right.
 
 \]</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>shape</strong> (<cite>list</cite> or <cite>tuple</cite>) – shape of Bernoulli observation matrix [M, N]</p>
-</dd>
-<dt class="field-even">Keyword Arguments</dt>
-<dd class="field-even"><p><strong>verbose</strong> (<cite>bool</cite>) – display log info (default: {True})</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>Phi</strong> – Bernoulli observation matrix</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><cite>ndarray</cite></p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>shape</strong> (<cite>list</cite> or <cite>tuple</cite>) – shape of Bernoulli observation matrix [M, N]</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><strong>verbose</strong> (<cite>bool</cite>) – display log info (default: {True})</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>Phi</strong> – Bernoulli observation matrix</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><cite>ndarray</cite></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -218,7 +208,7 @@ columns are l2 normalized</p>
 
 <dl class="function">
 <dt id="pysparse.cs.sensing.obsmat.gaussian">
-<code class="descclassname">pysparse.cs.sensing.obsmat.</code><code class="descname">gaussian</code><span class="sig-paren">(</span><em>shape</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/cs/sensing/obsmat.html#gaussian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.cs.sensing.obsmat.gaussian" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pysparse.cs.sensing.obsmat.</code><code class="descname">gaussian</code><span class="sig-paren">(</span><em>shape</em>, <em>seed=None</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/cs/sensing/obsmat.html#gaussian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.cs.sensing.obsmat.gaussian" title="Permalink to this definition">¶</a></dt>
 <dd><p>generates Gauss observation matrix</p>
 <p>Generates M-by-N Gauss observation matrix which have gaussian distribution elements(
 columns are l2 normalized).</p>
@@ -226,45 +216,47 @@ columns are l2 normalized).</p>
 \[{\bm \Phi} \sim {\mathcal N}(0, \frac{1}{M})
 
 \]</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>shape</strong> (<cite>list</cite> or <cite>tuple</cite>) – shape of Gauss observation matrix [M, N]</p>
-</dd>
-<dt class="field-even">Keyword Arguments</dt>
-<dd class="field-even"><p><strong>verbose</strong> (<cite>bool</cite>) – display log info (default: {True})</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>A</strong> – Gauss observation matrix <span class="math">\(\bm A\)</span>.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><cite>ndarray</cite></p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>shape</strong> (<cite>list</cite> or <cite>tuple</cite>) – shape of Gauss observation matrix [M, N]</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><strong>verbose</strong> (<cite>bool</cite>) – display log info (default: {True})</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>A</strong> – Gauss observation matrix <span class="math">\(\bm A\)</span>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><cite>ndarray</cite></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="pysparse.cs.sensing.obsmat.gaussian0">
-<code class="descclassname">pysparse.cs.sensing.obsmat.</code><code class="descname">gaussian0</code><span class="sig-paren">(</span><em>shape</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/cs/sensing/obsmat.html#gaussian0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.cs.sensing.obsmat.gaussian0" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pysparse.cs.sensing.obsmat.</code><code class="descname">gaussian0</code><span class="sig-paren">(</span><em>shape</em>, <em>seed=None</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pysparse/cs/sensing/obsmat.html#gaussian0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pysparse.cs.sensing.obsmat.gaussian0" title="Permalink to this definition">¶</a></dt>
 <dd><p>generates Gauss observation matrix</p>
 <p>Generates M-by-N Gauss observation matrix</p>
 <div class="math">
 \[{\bm \Phi} \sim {\mathcal N}(0, \frac{1}{M})
 
 \]</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>shape</strong> (<cite>list</cite> or <cite>tuple</cite>) – shape of Gauss observation matrix [M, N]</p>
-</dd>
-<dt class="field-even">Keyword Arguments</dt>
-<dd class="field-even"><p><strong>verbose</strong> (<cite>bool</cite>) – display log info (default: {True})</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>Phi</strong> – Gauss observation matrix <span class="math">\(\bm \Phi\)</span>.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><cite>ndarray</cite></p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>shape</strong> (<cite>list</cite> or <cite>tuple</cite>) – shape of Gauss observation matrix [M, N]</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><strong>verbose</strong> (<cite>bool</cite>) – display log info (default: {True})</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>Phi</strong> – Gauss observation matrix <span class="math">\(\bm \Phi\)</span>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><cite>ndarray</cite></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -281,20 +273,21 @@ columns are l2 normalized).</p>
 \[{\bm \Phi}_{ij} = \left[\begin{array}{ccccc}{a_{0}} & {a_{-1}} & {a_{-2}} & {\cdots} & {a_{-n+1}} \\ {a_{1}} & {a_{0}} & {a_{-1}} & {\cdots} & {a_{-n+2}} \\ {a_{2}} & {a_{1}} & {a_{0}} & {\cdots} & {a_{-n+3}} \\ {\vdots} & {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {a_{n-1}} & {a_{n-2}} & {a_{n-3}} & {\cdots} & {a_{0}}\end{array}\right]
 
 \]</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>shape</strong> (<cite>list</cite> or <cite>tuple</cite>) – shape of Toeplitz observation matrix [M, N]</p>
-</dd>
-<dt class="field-even">Keyword Arguments</dt>
-<dd class="field-even"><p><strong>verbose</strong> (<cite>bool</cite>) – display log info (default: {True})</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>A</strong> – Toeplitz observation matrix <span class="math">\(\bm A\)</span>.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><cite>ndarray</cite></p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>shape</strong> (<cite>list</cite> or <cite>tuple</cite>) – shape of Toeplitz observation matrix [M, N]</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><strong>verbose</strong> (<cite>bool</cite>) – display log info (default: {True})</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>A</strong> – Toeplitz observation matrix <span class="math">\(\bm A\)</span>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><cite>ndarray</cite></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -314,7 +307,7 @@ columns are l2 normalized).</p>
         <a href="pysparse.evaluation.html" class="btn btn-neutral float-right" title="pysparse.evaluation package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pysparse.cs.recovery.html" class="btn btn-neutral" title="pysparse.cs.recovery package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pysparse.cs.recovery.html" class="btn btn-neutral float-left" title="pysparse.cs.recovery package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -323,7 +316,7 @@ columns are l2 normalized).</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Zhi Liu.
+        &copy; Copyright 2018, Zhi Liu
 
     </p>
   </div>
@@ -340,39 +333,16 @@ columns are l2 normalized).</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js"></script>
-      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js"></script>
-      <script type="text/javascript" src="_static/katex_autorenderer.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -1,0 +1,544 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pysparse.representation.dfts &mdash; PyML 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js"></script>
+        <script type="text/javascript" src="../../../_static/katex_autorenderer.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/katex-math.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PyML
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pysparse</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyML</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pysparse.representation.dfts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pysparse.representation.dfts</h1><div class="highlight"><pre>
+<span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># @Date    : 2019-06-13 10:34:43</span>
+<span class="c1"># @Author  : Yan Liu &amp; Zhi Liu (zhiliu.mind@gmail.com)</span>
+<span class="c1"># @Link    : http://iridescent.ink</span>
+<span class="c1"># @Version : $1.0$</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pysparse.utils.const</span> <span class="k">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="dftmat"><a class="viewcode-back" href="../../../pysparse.representation.html#pysparse.representation.dfts.dftmat">[docs]</a><span class="k">def</span> <span class="nf">dftmat</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Discrete Fourier transform matrix</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">       {\bm y} = {\bm D}{\bm x}</span>
+<span class="sd">       :label: equ-DFT_MatrixRep</span>
+
+<span class="sd">    where, :math:`{\bm x} = (x_n)_{N\times 1}, x_n = x[n]`, :math:`{\bm D} = (d_{ij})_{N\times N}` can be expressed as</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">       {\bm D} = \sqrt{\frac{2}{N}}\left[\begin{array}{cccc}{1/\sqrt{2}} &amp; {1/\sqrt{2}} &amp; {1/\sqrt{2}} &amp; {\cdots} &amp; {1/\sqrt{2}} \\ {\cos \frac{\pi}{2 N}} &amp; {\cos \frac{3 \pi}{2 N}} &amp; {\cos \frac{5 \pi}{2 N}} &amp; {\cdots} &amp; {\cos \frac{(2 N-1) \pi}{2 N}} \\ {\vdots} &amp; {\vdots} &amp; {\vdots} &amp; {\vdots} \\ {\cos \frac{(N-1) \pi}{2 N}} &amp; {\cos \frac{3(N-1) \pi}{2 N}} &amp; {\cos \frac{5(N-1) \pi}{2 N}} &amp; {\cdots} &amp; {\cos \frac{(2 N-1)(N-1) \pi}{2 N}}\end{array}\right]</span>
+<span class="sd">       :label: equ-DFT_Matrix</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    N : integer</span>
+<span class="sd">        signal dimesion.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------------------</span>
+<span class="sd">    T : ndarray</span>
+<span class="sd">        DFT matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># r, c = np.mgrid[0:N, 0:N]</span>
+
+    <span class="c1"># T = np.sqrt(2 / N) * np.cos(PI * (2 * c + 1) * r / (2 * N))</span>
+    <span class="c1"># T[0, :] = T[0, :] / np.sqrt(2)</span>
+
+    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="mf">1.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">T</span></div>
+
+
+<div class="viewcode-block" id="dft1"><a class="viewcode-back" href="../../../pysparse.representation.html#pysparse.representation.dfts.dft1">[docs]</a><span class="k">def</span> <span class="nf">dft1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;1-Dimension Discrete cosine transform</span>
+
+<span class="sd">       The DFT of signal :math:`x[n], n=0, 1,\cdots, N-1` is expressed as</span>
+
+<span class="sd">       .. math::</span>
+<span class="sd">          y[k] = {\rm DFT}(x[n]) = \left\{ {\begin{array}{lll}</span>
+<span class="sd">              {\sqrt{\frac{2}{N}}\sum_{n=0}^{N-1}x[n]\frac{1}{\sqrt 2}, \quad k=0}\\</span>
+<span class="sd">              {\sqrt{\frac{2}{N}}\sum_{n=0}^{N-1}x[n]{\rm cos}\frac{(2n + 1)k\pi}{2N}, \quad k=1, \cdots, N-1}</span>
+<span class="sd">              \end{array}} \right.</span>
+<span class="sd">          :label: equ-DFT</span>
+
+<span class="sd">       where, :math:`k=0, 1, \cdots, N-1`</span>
+
+<span class="sd">    N. Ahmed, T. Natarajan, and K. R. Rao. Discrete cosine transform.</span>
+<span class="sd">    IEEE Transactions on Computers, C-23(1):90–93, 1974. doi:10.1109/T-C.1974.223784</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    -------------</span>
+<span class="sd">    x : numpy array</span>
+<span class="sd">        signal vector or matrix</span>
+
+<span class="sd">    Keyword Arguments</span>
+<span class="sd">    --------------------</span>
+<span class="sd">    axis : number</span>
+<span class="sd">        transformation axis when x is a matrix (default: {0}, col)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -----------</span>
+<span class="sd">    y : numpy array</span>
+<span class="sd">        the coefficients.</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">dftmat</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">axis</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">axis</span> <span class="ow">is</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">transpose</span><span class="p">())</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">dftmat</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="idft1"><a class="viewcode-back" href="../../../pysparse.representation.html#pysparse.representation.dfts.idft1">[docs]</a><span class="k">def</span> <span class="nf">idft1</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;1-Dimension Inverse Discrete cosine transform</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">       {\bm x} = {\bm D}^{-1}{\bm y} = {\bm D}^T{\bm y}</span>
+<span class="sd">       :label: equ-IDFT_MatrixRep</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    -------------</span>
+<span class="sd">    y : numpy array</span>
+<span class="sd">        coefficients</span>
+
+<span class="sd">    Keyword Arguments</span>
+<span class="sd">    ------------------</span>
+<span class="sd">    axis : number</span>
+<span class="sd">        IDFT along which axis (default: {0})</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------------</span>
+<span class="sd">    x : numpy array</span>
+<span class="sd">        recovered signal.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+        <span class="c1"># T = np.linalg.inv(dftmat(N))</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">dftmat</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">axis</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">axis</span> <span class="ow">is</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">transpose</span><span class="p">())</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="ow">is</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">dftmat</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="dft2"><a class="viewcode-back" href="../../../pysparse.representation.html#pysparse.representation.dfts.dft2">[docs]</a><span class="k">def</span> <span class="nf">dft2</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;2-Dimension Discrete cosine transform</span>
+
+<span class="sd">    dft1(dft1(X, axis=0), axis=1)</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    -----------------</span>
+<span class="sd">    X : numpy array</span>
+<span class="sd">        signal matrix</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -----------</span>
+<span class="sd">    Y : numpy array</span>
+<span class="sd">        coefficients matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">dft1</span><span class="p">(</span><span class="n">dft1</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="idft2"><a class="viewcode-back" href="../../../pysparse.representation.html#pysparse.representation.dfts.idft2">[docs]</a><span class="k">def</span> <span class="nf">idft2</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;2-Dimension Inverse Discrete cosine transform</span>
+
+<span class="sd">    idft1(idft1(X, axis=0), axis=1)</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    --------------</span>
+<span class="sd">    X : numpy array</span>
+<span class="sd">        signal matrix</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    --------------</span>
+<span class="sd">    Y : numpy array</span>
+<span class="sd">        coefficients matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">idft1</span><span class="p">(</span><span class="n">idft1</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="dftdict"><a class="viewcode-back" href="../../../pysparse.representation.html#pysparse.representation.dfts.dftdict">[docs]</a><span class="k">def</span> <span class="nf">dftdict</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">isnorm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Complete DFT dictionary</span>
+
+
+<span class="sd">    .. math::</span>
+<span class="sd">       {\bm D} = \sqrt{\frac{2}{N}}\left[\begin{array}{cccc}{1/\sqrt{2}} &amp; {1/\sqrt{2}} &amp; {1/\sqrt{2}} &amp; {\cdots} &amp; {1/\sqrt{2}} \\ {\cos \frac{\pi}{2 N}} &amp; {\cos \frac{3 \pi}{2 N}} &amp; {\cos \frac{5 \pi}{2 N}} &amp; {\cdots} &amp; {\cos \frac{(2 N-1) \pi}{2 N}} \\ {\vdots} &amp; {\vdots} &amp; {\vdots} &amp; {\vdots} \\ {\cos \frac{(N-1) \pi}{2 N}} &amp; {\cos \frac{3(N-1) \pi}{2 N}} &amp; {\cos \frac{5(N-1) \pi}{2 N}} &amp; {\cdots} &amp; {\cos \frac{(2 N-1)(N-1) \pi}{2 N}}\end{array}\right]</span>
+<span class="sd">       :label: equ-DFT_Matrix</span>
+
+<span class="sd">    Because :math:`{\bm z} = {\bm D}{\bm x}`, :math:`{\bm D}{\bm D}^T = {\bm I}`</span>
+<span class="sd">    So, :math:`{\bm x} = {\bm D}^T{\bm z}`</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    -------------</span>
+<span class="sd">    N : integer</span>
+<span class="sd">        The dictionary is of size :math:`N\times N`</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------------</span>
+<span class="sd">    D : numpy array</span>
+<span class="sd">        DFT dictionary ( :math:`{\bm D}^T` ).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;================in dftdict================&quot;</span><span class="p">)</span>
+
+    <span class="n">D</span> <span class="o">=</span> <span class="n">dftmat</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---Done!&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">D</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="odftdict"><a class="viewcode-back" href="../../../pysparse.representation.html#pysparse.representation.dfts.odftdict">[docs]</a><span class="k">def</span> <span class="nf">odftdict</span><span class="p">(</span><span class="n">dictshape</span><span class="p">,</span> <span class="n">isnorm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Overcomplete 1D-DFT dictionary</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">       {\bm D} = \sqrt{\frac{2}{N}}\left[\begin{array}{cccc}{1/\sqrt{2}} &amp; {1/\sqrt{2}} &amp; {1/\sqrt{2}} &amp; {\cdots} &amp; {1/\sqrt{2}} \\ {\cos \frac{\pi}{2 N}} &amp; {\cos \frac{3 \pi}{2 N}} &amp; {\cos \frac{5 \pi}{2 N}} &amp; {\cdots} &amp; {\cos \frac{(2 N-1) \pi}{2 N}} \\ {\vdots} &amp; {\vdots} &amp; {\vdots} &amp; {\vdots} \\ {\cos \frac{(M-1) \pi}{2 N}} &amp; {\cos \frac{3(M-1) \pi}{2 N}} &amp; {\cos \frac{5(M-1) \pi}{2 N}} &amp; {\cdots} &amp; {\cos \frac{(2 N-1)(M-1) \pi}{2 N}}\end{array}\right]</span>
+<span class="sd">       :label: equ-ODFT_Matrix</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">       {\bm D} = \left[\frac{{\bm d}_0}{\|{\bm d}_0\|_2}, \frac{{\bm d}_1}{\|{\bm d}_1\|_2},\cdots, \frac{{\bm d}_{N-1}}{\|{\bm d}_{N-1}\|_2}\right]</span>
+<span class="sd">       :label: equ-ODFT_Matrix_normed</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ----------------------</span>
+<span class="sd">    dictshape : tuple</span>
+<span class="sd">        dictionary shape</span>
+
+<span class="sd">    Keyword Arguments</span>
+<span class="sd">    ----------------------</span>
+<span class="sd">    isnorm : bool</span>
+<span class="sd">        normlize atoms (default: {False})</span>
+<span class="sd">    verbose : bool</span>
+<span class="sd">        display log (default: {True})</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;================in odftdict================&quot;</span><span class="p">)</span>
+
+    <span class="n">M</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">dictshape</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">dictshape</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---Construct Overcomplete 1D-DFT dictionary...&quot;</span><span class="p">)</span>
+
+    <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">M</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="p">]</span>
+
+    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">PI</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">r</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">N</span><span class="p">))</span>
+    <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">isnorm</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---Normalization...&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">D</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="n">D</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span> <span class="o">/</span> <span class="n">norm</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---Done!&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">D</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="odftndict"><a class="viewcode-back" href="../../../pysparse.representation.html#pysparse.representation.dfts.odftndict">[docs]</a><span class="k">def</span> <span class="nf">odftndict</span><span class="p">(</span><span class="n">dictshape</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">isnorm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;generates Overcomplete nD-DFT dictionary</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">       {\bm D}_{nd} = {\bm D}_{(n-1)d} \otimes {\bm D}_{(n-1)d}.</span>
+<span class="sd">       :label: equ-CreatenDDFT_Matrix</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------------------</span>
+<span class="sd">    dictshape : `list` or `tuple`</span>
+<span class="sd">        shape of DFT dict [M, N]</span>
+
+<span class="sd">    Keyword Arguments</span>
+<span class="sd">    ---------------------</span>
+<span class="sd">    axis : `number`</span>
+<span class="sd">        Axis along which the dft is computed. If -1 then the transform</span>
+<span class="sd">        is multidimensional(default=-1) (default: {-1})</span>
+
+<span class="sd">    isnorm : `bool`</span>
+<span class="sd">        normlize atoms (default: {False})</span>
+
+<span class="sd">    verbose : `bool`</span>
+<span class="sd">        display log info (default: {True})</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ---------------------</span>
+<span class="sd">    OD : `ndarray`</span>
+<span class="sd">        Overcomplete nD-DFT dictionary</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;================in odftndict================&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">=</span> <span class="n">dictshape</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;===Construct Overcomplete nD-DFT dictionary...&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---DFT dictionary shape: &quot;</span><span class="p">,</span> <span class="n">dictshape</span><span class="p">)</span>
+
+    <span class="n">MM</span><span class="p">,</span> <span class="n">NN</span> <span class="o">=</span> <span class="n">dictshape</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">MM</span><span class="p">))</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">NN</span><span class="p">))</span>
+
+    <span class="n">D</span> <span class="o">=</span> <span class="n">odftdict</span><span class="p">((</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">isnorm</span><span class="o">=</span><span class="n">isnorm</span><span class="p">)</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---Done!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">D</span></div>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+    <span class="kn">import</span> <span class="nn">pysparse</span> <span class="k">as</span> <span class="nn">pys</span>
+    <span class="kn">import</span> <span class="nn">scipy.io</span> <span class="k">as</span> <span class="nn">sio</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">dft1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dftmat</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dftdict</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">dftmat</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span><span class="n">transpose</span><span class="p">()))</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------&quot;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">dft1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Matlab--&gt; dft(x)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">dft1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Matlab--&gt; dft(x&#39;)&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------&quot;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">dft2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------IDFT-------------&quot;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">idft2</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------ODFT-------------&quot;</span><span class="p">)</span>
+    <span class="n">dictshape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4096</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+    <span class="n">OD</span> <span class="o">=</span> <span class="n">odftdict</span><span class="p">(</span><span class="n">dictshape</span><span class="o">=</span><span class="n">dictshape</span><span class="p">,</span> <span class="n">isnorm</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">OD</span> <span class="o">=</span> <span class="n">odftndict</span><span class="p">(</span><span class="n">dictshape</span><span class="o">=</span><span class="n">dictshape</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">isnorm</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">OD</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">sio</span><span class="o">.</span><span class="n">savemat</span><span class="p">(</span><span class="s1">&#39;OD.mat&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;OD&#39;</span><span class="p">:</span> <span class="n">OD</span><span class="p">})</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">OD</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="n">pys</span><span class="o">.</span><span class="n">showdict</span><span class="p">(</span><span class="n">OD</span><span class="p">,</span> <span class="n">rcsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">bgcolorv</span><span class="o">=-</span><span class="mf">0.06</span><span class="p">)</span>
+
+    <span class="n">OD</span> <span class="o">=</span> <span class="n">pys</span><span class="o">.</span><span class="n">odftndict</span><span class="p">(</span><span class="n">dictshape</span><span class="o">=</span><span class="p">(</span><span class="mi">4096</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="n">isnorm</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">A1</span> <span class="o">=</span> <span class="n">pys</span><span class="o">.</span><span class="n">showdict</span><span class="p">(</span><span class="n">OD</span><span class="p">,</span> <span class="n">rcsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">bgcolorv</span><span class="o">=-</span><span class="mf">0.03</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Zhi Liu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
