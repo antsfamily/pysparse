@@ -15,10 +15,10 @@ from sklearn.linear_model import Lasso
 def lasso(y, A, alpha=0.5, normalize=False, max_iter=200, tol=1.0e-6, verbose=False):
     r"""lasso
 
-    The optimization objective for Lasso is::
+    The optimization objective for Lasso is:
 
     .. math::
-        (1 / (2 * n_samples)) * ||y - Xw||^2_2 + alpha * ||w||_1
+        (1 / (2 * n_{samples})) * ||y - Xw||^2_2 + \alpha * ||w||_1
 
     Technically the Lasso model is optimizing the same objective function as
     the Elastic Net with ``l1_ratio=1.0`` (no L2 penalty).

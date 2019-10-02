@@ -16,12 +16,18 @@ def snr():
 
 def psnr(o, r, Vpeak=None, mode='simple'):
     r"""Peak Signal-to-Noise Ratio
+
     The Peak Signal-to-Noise Ratio (PSNR) is expressed as
+
     .. math::
-        10 \log10(\frac{V_{peak}^2}{\rm MSE})
-    For float data, V_{peak} = 1;
+        {\rm PSNR} = 10 \log10(\frac{V_{peak}^2}{\rm MSE})
+
+    For float data, :math:`V_{peak} = 1`;
+
     For interges, :math:`V_{peak} = 2^{nbits}`,
     e.g. uint8: 255, uint16: 65535 ...
+
+
     Parameters
     -----------
     o : array_like
@@ -33,6 +39,7 @@ def psnr(o, r, Vpeak=None, mode='simple'):
     mode : str or None, optional
          'simple' or 'rich'. 'simple' (default) --> just return psnr i.e.
          'rich' --> return psnr, mse, Vpeak, imgtype.
+
     Returns
     -------
     PSNR : float

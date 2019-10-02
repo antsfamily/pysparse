@@ -15,14 +15,6 @@ from sklearn.linear_model import OrthogonalMatchingPursuit
 def omp0(y, A, normalize=False, tol=1.0e-6, verbose=False):
     r"""omp
 
-    The optimization objective for Lasso is
-
-    .. math::
-        (1 / (2 * n_samples)) * ||y - Xw||^2_2 + ||w||_0
-
-    Technically the Lasso model is optimizing the same objective function as
-    the Elastic Net with ``l1_ratio=1.0`` (no L2 penalty).
-
     Arguments
     ---------------------
      y {[type]} -- [description]
@@ -58,7 +50,7 @@ def omp(Y, A, k=None, normalize=False, tol=1.0e-6, verbose=False):
        {\bm y} = {\bm A}{\bm \alpha} = {\alpha}_1 {\bm a}_1 + {\alpha}_2 {\bm a}_2 + \cdots {\alpha}_n {\bm a}_n,
        :label: equ-OmpProb
 
-    The optimization objective for omp is::
+    The optimization objective for omp is:
 
     .. math::
        {\rm min}_{\bm x} = \|{\bm x}\|_p + \lambda\|{\bm y} - {\bm A}{\bm x}\|_2.
@@ -70,7 +62,7 @@ def omp(Y, A, k=None, normalize=False, tol=1.0e-6, verbose=False):
         signal vector or matrix, if :math:`{\bm y}\in{\mathbb R}^{M\times 1}` is a matrix,
         then apply OMP on each column
     A : ndarary
-        overcomplete dictionary (:math:`{\bm A}\in {\mathbb R}^{M\times N}` )
+        overcomplete dictionary ( :math:`{\bm A}\in {\mathbb R}^{M\times N}` )
 
     Keyword Arguments
     ------------------
@@ -112,12 +104,12 @@ def omp(Y, A, k=None, normalize=False, tol=1.0e-6, verbose=False):
         # print(n)
         y = Y[:, n]
         r = y
-        I = []
+        II = []
 
         for t in range(k):
             it = np.argmax(np.abs(np.dot(r, A)))
-            I.append(it)
-            AI = A[:, I]
+            II.append(it)
+            AI = A[:, II]
             s = np.matmul(
                 np.matmul(np.linalg.inv(np.matmul(AI.transpose(), AI)),
                           AI.transpose()), y)
@@ -127,7 +119,7 @@ def omp(Y, A, k=None, normalize=False, tol=1.0e-6, verbose=False):
             r = y - yHat
 
         x = np.zeros(N, dtype)
-        x[I] = s
+        x[II] = s
         X[:, n] = x
 
     if vecflag:
@@ -145,7 +137,7 @@ def romp(Y, A, k=None, alpha=1e-6, normalize=False, tol=1.0e-6, verbose=False):
     ROMP add a small penalty factor :math:`\alpha` to
 
     .. math::
-        ({\bm A}_{{\mathbb I}_t}^T{\bm A}_{{\mathbb I}_t})^{-1}`
+        ({\bm A}_{{\mathbb I}_t}^T{\bm A}_{{\mathbb I}_t})^{-1}
 
     to avoid matrix singularity
 
@@ -207,12 +199,12 @@ def romp(Y, A, k=None, alpha=1e-6, normalize=False, tol=1.0e-6, verbose=False):
         # print(n)
         y = Y[:, n]
         r = y
-        I = []
+        II = []
 
         for t in range(k):
             it = np.argmax(np.abs(np.dot(r, A)))
-            I.append(it)
-            AI = A[:, I]
+            II.append(it)
+            AI = A[:, II]
             MAI, NAI = AI.shape
             E = alpha * np.eye(NAI, NAI)
             s = np.matmul(
@@ -224,7 +216,7 @@ def romp(Y, A, k=None, alpha=1e-6, normalize=False, tol=1.0e-6, verbose=False):
             r = y - yHat
 
         x = np.zeros(N, dtype)
-        x[I] = s
+        x[II] = s
         X[:, n] = x
 
     if vecflag:
